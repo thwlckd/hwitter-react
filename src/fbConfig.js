@@ -1,6 +1,6 @@
 // Your web app's Firebase configuration
 import firebase from "firebase/compat/app";
-// import "firebase/compat/auth";
+import "firebase/compat/auth";
 // import "firebase/compat/firestore";
 // import "firebase/compat/storage";
 
@@ -14,4 +14,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-export default firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
+
+// Initialize Firebase Authentication and get a reference to the service
+export const authService = firebase.auth();
