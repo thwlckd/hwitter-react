@@ -8,7 +8,6 @@ function App() {
   const [userObj, setUserObj] = useState(null);
 
   useEffect(() => {
-    // observer for changes to the user's sign-in state
     authService.onAuthStateChanged((user) => {
       if (user) {
         if (user.displayName === null) {

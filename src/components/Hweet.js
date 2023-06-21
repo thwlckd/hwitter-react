@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { dbService, storageService } from "../fbConfig";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 
 const Hweet = ({ hweetObj, isOwner }) => {
   const [editing, setEditing] = useState(false);
@@ -9,7 +11,9 @@ const Hweet = ({ hweetObj, isOwner }) => {
     const ok = window.confirm("Are you sure you want to delete this hweet?");
     if (ok) {
       await dbService.doc(`hweets/${hweetObj.id}`).delete();
-      await storageService.refFromURL(hweetObj.attachmentUrl).delete();
+      if (hweetObj.attachmentUrl) {
+        await storageService.refFromURL(hweetObj.attachmentUrl).delete();
+      }
     }
   };
 
@@ -31,32 +35,38 @@ const Hweet = ({ hweetObj, isOwner }) => {
   };
 
   return (
-    <div>
+    <div className="hweet">
       {editing ? (
         <>
-          <form onSubmit={onSubmit}>
+          <form onSubmit={onSubmit} className="container hweetEdit">
             <input
               type="text"
               placeholder="Edit your hweet"
               value={newHweet}
               required
+              autoFocus
               onChange={onChange}
+              className="formInput"
             />
-            <input type="submit" value="Update Hweet" />
+            <input type="submit" value="Update Hweet" className="formBtn" />
           </form>
-          <button onClick={toggleEditing}>Cancel</button>
+          <span onClick={toggleEditing} className="formBtn cancelBtn">
+            Cancel
+          </span>
         </>
       ) : (
         <>
           <h4>{hweetObj.text}</h4>
-          {hweetObj.attachmentUrl && (
-            <img src={hweetObj.attachmentUrl} width="50px" height="50px" />
-          )}
+          {hweetObj.attachmentUrl && <img src={hweetObj.attachmentUrl} />}
           {isOwner && (
-            <>
-              <button onClick={onDeleteClick}>Delete Hweet</button>
-              <button onClick={toggleEditing}>Edit Hweet</button>
-            </>
+            <div className="hweet__actions">
+              <span onClick={onDeleteClick}>
+                <FontAwesomeIcon icon={faTrash} />
+              </span>
+              <span onClick={toggleEditing}>
+                <FontAwesomeIcon icon={faPencilAlt} />
+              </span>
+            </div>
           )}
         </>
       )}
