@@ -49,7 +49,6 @@ function App() {
       ) : (
         "Initializing.."
       )}
-      <footer>&copy: Hwitter {new Date().getFullYear()}</footer>
     </>
   );
 }
