@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { authService } from "../fbConfig";
 
-export default ({ userObj, refreshUser }) => {
+const Profile = ({ userObj, refreshUser }) => {
   const navigate = useNavigate();
   const [newDisplayName, setNewDisplayName] = useState(userObj.displayName);
 
@@ -54,3 +54,5 @@ export default ({ userObj, refreshUser }) => {
     </div>
   );
 };
+
+export default Profile;

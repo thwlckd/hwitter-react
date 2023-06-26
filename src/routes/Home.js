@@ -25,6 +25,7 @@ const Home = ({ userObj }) => {
             key={hweet.id}
             hweetObj={hweet}
             isOwner={hweet.creatorId === userObj.uid}
+            userObj={userObj}
           />
         ))}
       </div>

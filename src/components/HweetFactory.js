@@ -89,6 +89,7 @@ const HweetFactory = ({ userObj }) => {
             style={{
               backgroundImage: attachment,
             }}
+            alt="profile"
           />
           <div className="factoryForm__clear" onClick={onClearAttachment}>
             <span>Remove</span>

@@ -3,7 +3,7 @@ import { dbService, storageService } from "../fbConfig";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 
-const Hweet = ({ hweetObj, isOwner }) => {
+const Hweet = ({ hweetObj, isOwner, userObj }) => {
   const [editing, setEditing] = useState(false);
   const [newHweet, setNewHweet] = useState(hweetObj.text);
 
@@ -56,8 +56,15 @@ const Hweet = ({ hweetObj, isOwner }) => {
         </>
       ) : (
         <>
-          <h4>{hweetObj.text}</h4>
-          {hweetObj.attachmentUrl && <img src={hweetObj.attachmentUrl} />}
+          <h4>
+            {userObj.displayName}🫡
+            <br />
+            <br />
+            {hweetObj.text}
+          </h4>
+          {hweetObj.attachmentUrl && (
+            <img src={hweetObj.attachmentUrl} alt="profile" />
+          )}
           {isOwner && (
             <div className="hweet__actions">
               <span onClick={onDeleteClick}>

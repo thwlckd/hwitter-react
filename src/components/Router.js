@@ -7,7 +7,7 @@ import Profile from "../routes/Profile";
 
 const AppRouter = ({ refreshUser, isLoggedIn, userObj }) => {
   return (
-    <Router>
+    <Router base="/">
       {isLoggedIn && <Navigation userObj={userObj} />}
       <div
         style={{
