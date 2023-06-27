@@ -57,7 +57,7 @@ const Hweet = ({ hweetObj, isOwner, userObj }) => {
       ) : (
         <>
           <h4>
-            {userObj.displayName}🫡
+            {hweetObj.username}🫡
             <br />
             <br />
             {hweetObj.text}

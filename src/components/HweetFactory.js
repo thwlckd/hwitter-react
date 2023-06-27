@@ -22,6 +22,7 @@ const HweetFactory = ({ userObj }) => {
       attachmentUrl = await response.ref.getDownloadURL();
     }
     const hweetObj = {
+      username: userObj.displayName,
       text: hweet,
       createdAt: Date.now(),
       creatorId: userObj.uid,
